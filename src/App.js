@@ -19,7 +19,7 @@ const ExpenseTracker = () => {
   const [error, setError] = useState('');
   const [stats, setStats] = useState(null);
 
-  const API_URL = 'https://exptrack.binodgayasri.me/api';
+  const API_URL = 'https://api.exptrack.binodgayasri.me/api';
 
   const categories = [
     { value: 'food', label: '🍔 Food', color: '#FF6B6B' },
