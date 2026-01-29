@@ -276,7 +276,7 @@ const ExpenseTracker = () => {
           <div style={styles.headerLeft}>
             <Wallet style={styles.headerIcon} />
             <div>
-              <h1 style={styles.mainTitle}>ExpTrack</h1>
+              <h1 style={styles.mainTitle}>Expense Track</h1>
               <p style={styles.welcomeText}>Welcome, {user.name}!</p>
             </div>
           </div>
