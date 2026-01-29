@@ -19,7 +19,7 @@ const ExpenseTracker = () => {
   const [error, setError] = useState('');
   const [stats, setStats] = useState(null);
 
-  const API_URL = 'https://exptrackapi.binodgayasri.me/api';
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const categories = [
     { value: 'food', label: '🍔 Food', color: '#FF6B6B' },
