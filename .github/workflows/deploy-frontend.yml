@@ -1,0 +1,44 @@
+name: Deploy React Frontend
+
+on:
+  push:
+    branches:
+      - main   # or your deployment branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Checkout repo
+      - uses: actions/checkout@v3
+
+      # 2️⃣ Set up Node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      # 3️⃣ Install dependencies
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./expense-tracker-frontend  # your frontend folder
+
+      # 4️⃣ Build React app
+      - name: Build React App
+        run: npm run build
+        working-directory: ./expense-tracker-frontend
+
+      # 5️⃣ Deploy to EC2 via SSH
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ubuntu
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          script: |
+            echo "Deploying frontend to /var/www/expense-tracker/expense-tracker-frontend"
+            rm -rf /var/www/expense-tracker/expense-tracker-frontend/build
+            mkdir -p /var/www/expense-tracker/expense-tracker-frontend/build
+            scp -r ./expense-tracker-frontend/build/* ubuntu@${{ secrets.EC2_HOST }}:/var/www/expense-tracker/expense-tracker-frontend/build/
+            sudo systemctl restart nginx
