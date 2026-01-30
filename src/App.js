@@ -245,9 +245,9 @@ const ExpenseTracker = () => {
             </button>
           </form>
 
-          <p style={styles.backendNote}>
+          {/* <p style={styles.backendNote}>
             Backend should be running on http://localhost:3500
-          </p>
+          </p> */}
         </div>
       </div>
     );
@@ -276,7 +276,7 @@ const ExpenseTracker = () => {
           <div style={styles.headerLeft}>
             <Wallet style={styles.headerIcon} />
             <div>
-              <h1 style={styles.mainTitle}>Expense Track</h1>
+              <h1 style={styles.mainTitle}>Expense Tracker</h1>
               <p style={styles.welcomeText}>Welcome, {user.name}!</p>
             </div>
           </div>
